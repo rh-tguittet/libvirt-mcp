@@ -1,0 +1,25 @@
+[project]
+name = "libvirt-mcp"
+version = "0.1.0"
+description = "MCP server for managing libvirt/KVM virtual machines: lifecycle, snapshots, cloning, cloud-image provisioning with virt-customize, in-guest command execution (qemu guest agent + SSH fallback), and virtiofs host<->VM file shares."
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.11"
+dependencies = [
+    "mcp>=2.0",
+]
+
+# NOTE: the libvirt python bindings are intentionally NOT a dependency here.
+# They are ABI-coupled to the system libvirt and are best taken from the
+# distro package (python3-libvirt on Fedora/RHEL/Debian/Ubuntu). The server
+# falls back to the system site-packages at runtime if needed — see README.
+
+[project.scripts]
+libvirt-mcp = "libvirt_mcp.server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/libvirt_mcp"]

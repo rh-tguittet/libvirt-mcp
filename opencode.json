@@ -1,0 +1,16 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "servers": {
+      "libvirt": {
+        "type": "local",
+        "command": ["uv", "run", "libvirt-mcp"],
+        "environment": {
+          "LIBVIRT_MCP_URI": "qemu:///system",
+          "LIBVIRT_MCP_SSH_KEY": "~/.ssh/vms",
+          "LIBVIRT_MCP_LOG_LEVEL": "INFO"
+        }
+      }
+    }
+  }
+}
